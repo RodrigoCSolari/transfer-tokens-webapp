@@ -1,6 +1,5 @@
 import { localhost, aurora } from "@wagmi/chains";
-import { goerli, mainnet } from "wagmi";
-import CONTRACT_JSON from "./ERC20Abi.json";
+import { erc20ABI, goerli, mainnet } from "wagmi";
 
 export const getConfig = () => {
   const env = process.env.NEXT_PUBLIC_VERCEL_ENV || "aurora";
@@ -13,7 +12,7 @@ export const getConfig = () => {
         nodeUrl: "https://mainnet.aurora.dev",
         contractAddress: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_AURORA,
         explorerUrl: "https://explorer.aurora.dev",
-        abi: CONTRACT_JSON.abi,
+        abi: erc20ABI,
       };
     case "mainnet":
       return {
@@ -22,7 +21,7 @@ export const getConfig = () => {
         rcpUrl: "https://mainnet.infura.io/v3/",
         contractAddress: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_MAINNET,
         explorerUrl: "https://etherscan.io",
-        abi: CONTRACT_JSON.abi,
+        abi: erc20ABI,
       };
     case "goerli":
       return {
@@ -31,7 +30,7 @@ export const getConfig = () => {
         nodeUrl: "https://goerli.infura.io/v3/",
         contractAddress: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_GOERLI,
         explorerUrl: "https://goerli.etherscan.io",
-        abi: CONTRACT_JSON.abi,
+        abi: erc20ABI,
       };
     case "development":
     case "preview":
@@ -42,7 +41,7 @@ export const getConfig = () => {
         nodeUrl: "http://localhost:8545",
         contractAddress: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_LOCALHOST,
         explorerUrl: "",
-        abi: CONTRACT_JSON.abi,
+        abi: erc20ABI,
       };
     default:
       throw Error(
